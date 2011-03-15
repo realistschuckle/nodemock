@@ -2,7 +2,7 @@ Node Mock - Simple Yet Powerful Mocking Framework for NodeJs
 ============================================================
 
 NodeMock is a very simple to use mocking framework which can be used to 
-mock functions in JavaScript objects. You can create mock a function in a single line.
+mock functions in JavaScript objects. You can mock a function in one line :)
 
 Features
 --------
@@ -25,6 +25,10 @@ Testing
 -------
 Node JS can be used with any testing framework. And we've used it with 
 Nodeunit and it's a perfect match.
+
+Install
+---------
+npm install nodemock
 
 Usage
 ------
