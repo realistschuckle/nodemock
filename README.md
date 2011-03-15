@@ -2,7 +2,8 @@ Node Mock - Simple Yet Powerful Mocking Framework for NodeJs
 ============================================================
 
 NodeMock is a very simple to use mocking framework which can be used to 
-mock functions in JavaScript objects. You can mock a function in one line :)
+mock functions in JavaScript objects. 
+NodeMock creates mock methods in less code with more expressive manner
 
 Features
 --------
@@ -11,15 +12,9 @@ Besides it's simplicity it supports following features
 	* Verify arguments (we check deeply on objects and arrays to check the validity)
 	* Allow a return to be sent
 	* Callbacks can also be executed with providing arguments
+	* Multiple mock functions in one object
+	* Alter a mock function later on
 	* Method chaining allows creating mocks super easy
-	
-Environment
------------
-NodeMock does not depend on any third party library and then can be used with 
-any JavaScript environment including
-	* NodeJS
-	* Browser
-	* Rhino
 	
 Testing
 -------
@@ -34,11 +29,9 @@ Usage
 ------
 
 ### Load the Module
-
 	var nodemock = require("nodemock");
 
 ### Creating a mock function with taking arguments and return value
-
 	var mocked = nodemock.mock("foo").takes(10, [10, 20, 30]).returns(98);
 	
 	mocked.foo(10, [10, 20, 30]); // this will return 98
@@ -46,7 +39,6 @@ Usage
 	mocked.foo(10); //throws execption
 	
 ### Creating a mock with callback support
-
 	var mocked = nodemock.mock("foo").takes(20, function(){}).calls(1, 30, [10, 20]);
 	
 	mockes.foo(20, function(num, arr) {
@@ -58,6 +50,20 @@ Usage
 		When you invoke foo() nodemock will calls the callback(sits in argument index 1 - as specified)
 		with the parameters 30 and [10, 20] respectively. 
 	*/
+
+### Alter an already created mock function
+	var mocked = nodemock.mock("foo").takes(10).returns(30);
+	mocked.foo(10); //gives 30
+	
+	mocked.mock("foo").takes(10, 20);
+	mocked.foo(10, 20); //gives 30
+	
+### Add multiple mock functions
+	var mocked = nodemock.mock("foo").takes(10).returns(30);
+	mocked.foo(10); //gives 30
+	
+	mocked.mock("bar").takes(true).returns(40);
+	mocked.bar(true); // gives 40
 	
 API Documentation
 -----------------
@@ -79,6 +85,9 @@ API Documentation
 		for a callback at index 2 .takes() function will be as,
 		
 		`mocked.takes(10, 20, function(){})
+	
+	mocked.mock(methodName)
+		Used to alter or create a new mock method and add rules to it as usual
 		
 Licence
 -------

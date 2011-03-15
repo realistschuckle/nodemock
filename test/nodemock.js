@@ -58,6 +58,14 @@ exports.testArgumentSimple = function(test) {
 	test.done();
 };
 
+exports.testWithJustReturn = function(test) {
+	
+	var mock = nm.mock("foo").returns(false);
+	test.ok(!mock.foo());
+	
+	test.done();
+};
+
 exports.testArgumentsDeep = function(test) {
 	
 	var mock = nm.mock("foo").takes([10, 20, {a: "aa", b: [10, 20]}]);
@@ -139,6 +147,47 @@ exports.testCallbackLessArgs = function(test) {
 		test.equals(a, 10);
 		test.equals(b, undefined);
 	});
+	
+	test.done();
+};
+
+exports.testMockAgain = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, 20).returns(30);
+	test.doesNotThrow(function() {
+		test.equal(mock.foo(10, 20), 30);
+	});
+	
+	mock.mock("bar").takes(10).returns(40);
+	test.doesNotThrow(function() {
+		test.equal(mock.bar(10), 40);
+	});
+	
+	test.doesNotThrow(function() {
+		test.equal(mock.foo(10, 20), 30);
+	});
+	test.done();
+};
+
+exports.testMockEdit = function(test) {
+	
+	var mock = nm.mock("foo").takes(10).returns(30);
+	test.throws(function() {
+		test.equal(mock.foo(10, 20), 30);
+	});
+	
+	test.doesNotThrow(function() {
+		mock.mock("foo").takes(10, 20);
+		test.equal(mock.foo(10, 20), 30);
+	});
+	
+	test.doesNotThrow(function() {
+		mock.mock("foo").takes(function(){}).calls(0, 10);
+		mock.foo(function(val) {
+			test.value(10, val);
+		});
+	});
+	
 	
 	test.done();
 };
