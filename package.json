@@ -1,0 +1,19 @@
+{
+    "name": "nodemock",
+    "version": "0.1-beta",
+    "directories": {
+        "lib": "./lib"
+    },
+    "main": "./lib/nodemock",
+    "engines": {
+        "node" : ">=0.2.0"
+    },
+    "description": "Simple Mocking Framework for NodeJs",
+    "author": "Arunoda Susiripala <arunoda.susiripala@gmail.com>",
+    "homepage": "https://github.com/arunoda/nodemock",
+    "repository" :
+    {
+        "type" : "git",
+        "url" : "git@github.com:arunoda/nodemock.git"
+    }
+}
