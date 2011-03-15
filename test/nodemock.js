@@ -103,7 +103,7 @@ exports.testReturn = function(test) {
 
 exports.testCallbackCorrect = function(test) {
 	
-	var mock = nm.mock("foo").takes(10, function(){}).calls(1, 10, 20);
+	var mock = nm.mock("foo").takes(10, function(){}).calls(1, [10, 20]);
 	test.expect(2);
 	mock.foo(10, function(a, b) {
 		test.equals(a, 10);
@@ -115,7 +115,7 @@ exports.testCallbackCorrect = function(test) {
 
 exports.testCallbackNoArgsDefined = function(test) {
 	
-	var mock = nm.mock("foo").calls(1, 10, 20);
+	var mock = nm.mock("foo").calls(1, [10, 20]);
 
 	test.throws(function() {
 		mock.foo(10, function(a, b) {
@@ -129,7 +129,7 @@ exports.testCallbackNoArgsDefined = function(test) {
 
 exports.testCallbackSurplusArgs = function(test) {
 	
-	var mock = nm.mock("foo").takes(10, function(){}).calls(1, 10, 20, 30, 40);
+	var mock = nm.mock("foo").takes(10, function(){}).calls(1, [10, 20, 30, 40]);
 	test.expect(2);
 	mock.foo(10, function(a, b) {
 		test.equals(a, 10);
@@ -141,10 +141,46 @@ exports.testCallbackSurplusArgs = function(test) {
 
 exports.testCallbackLessArgs = function(test) {
 	
-	var mock = nm.mock("foo").takes(10, function(){}).calls(1, 10);
+	var mock = nm.mock("foo").takes(10, function(){}).calls(1, [10]);
 	test.expect(2);
 	mock.foo(10, function(a, b) {
 		test.equals(a, 10);
+		test.equals(b, undefined);
+	});
+	
+	test.done();
+};
+
+exports.testCallbackNoArgs = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, function(){}).calls(1, []);
+	test.expect(2);
+	mock.foo(10, function(a, b) {
+		test.equals(a, undefined);
+		test.equals(b, undefined);
+	});
+	
+	test.done();
+};
+
+exports.testCallbackNullArgs = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, function(){}).calls(1, null);
+	test.expect(2);
+	mock.foo(10, function(a, b) {
+		test.equals(a, undefined);
+		test.equals(b, undefined);
+	});
+	
+	test.done();
+};
+
+exports.testCallbackWithoutArgs = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, function(){}).calls(1);
+	test.expect(2);
+	mock.foo(10, function(a, b) {
+		test.equals(a, undefined);
 		test.equals(b, undefined);
 	});
 	
@@ -182,7 +218,7 @@ exports.testMockEdit = function(test) {
 	});
 	
 	test.doesNotThrow(function() {
-		mock.mock("foo").takes(function(){}).calls(0, 10);
+		mock.mock("foo").takes(function(){}).calls(0, [10]);
 		mock.foo(function(val) {
 			test.value(10, val);
 		});

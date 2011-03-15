@@ -39,16 +39,16 @@ Usage
 	mocked.foo(10); //throws execption
 	
 ### Creating a mock with callback support
-	var mocked = nodemock.mock("foo").takes(20, function(){}).calls(1, 30, [10, 20]);
+	var mocked = nodemock.mock("foo").takes(20, function(){}).calls(1, [30, 40]);
 	
 	mockes.foo(20, function(num, arr) {
 		console.log(num); //prints 30
-		console.log(arr); //prints [10, 20]
+		console.log(arr); //prints 40
 	});
 	
 	/*
 		When you invoke foo() nodemock will calls the callback(sits in argument index 1 - as specified)
-		with the parameters 30 and [10, 20] respectively. 
+		with the parameters 30 and 40 respectively. 
 	*/
 
 ### Alter an already created mock function
@@ -77,9 +77,9 @@ API Documentation
 	mocked.returns(returnValue)
 		Specify the return value of the function
 		
-	mocked.calls(callbackPosition, callbackArg1, callbackArg2, ...)		 
+	mocked.calls(callbackPosition, argumentsArray)		 
 		Calls a callback at the arguments in index `callbackPosition`
-		with the arguments specified above
+		with the arguments specified in the "argumentsArray"
 		
 		when using this you've to define a function signature as a callback in the argument list
 		for a callback at index 2 .takes() function will be as,
@@ -89,7 +89,7 @@ API Documentation
 	mocked.mock(methodName)
 		Used to alter or create a new mock method and add rules to it as usual
 		
-Licence
+License
 -------
 The MIT License
 
