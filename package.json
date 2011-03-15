@@ -5,13 +5,16 @@
         "lib": "./lib"
     },
     "main": "./lib/nodemock",
-    "engines": {
-        "node" : ">=0.2.0"
-    },
     "description": "Simple Yet Powerful Mocking Framework for NodeJs",
     "author": "Arunoda Susiripala <arunoda.susiripala@gmail.com>",
     "homepage": "https://github.com/arunoda/nodemock",
-    "license": "The MIT License",
+    "licenses": [
+        {
+            "type": "The MIT License",
+            "url": "http://www.opensource.org/licenses/mit-license.php"
+        }
+    ],
+    
     "repository" :
     {
         "type" : "git",
