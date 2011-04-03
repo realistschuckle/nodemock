@@ -227,3 +227,26 @@ exports.testMockEdit = function(test) {
 	
 	test.done();
 };
+
+exports.testFailNoAnyMockMethod = function(test) {
+	
+	var mock = nm.fail();
+	test.throws(function() {
+		mock.foo();
+	});
+	test.done();
+};
+
+exports.testFailOneMockMethod = function(test) {
+	
+	var mock = nm.mock("foo").fail();
+	mock.mock("bar").takes(10, 20);
+	test.throws(function() {
+		mock.foo();
+	});
+	
+	test.doesNotThrow(function() {
+		mock.bar(10, 20);
+	});
+	test.done();
+};
