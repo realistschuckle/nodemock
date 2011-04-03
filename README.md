@@ -15,6 +15,7 @@ Besides it's simplicity it supports following features
 	* Multiple mock functions in one object
 	* Alter a mock function later on
 	* Method chaining allows creating mocks super easy
+	* Fail support added when calling method that should not be called
 	
 Testing
 -------
@@ -65,6 +66,17 @@ Usage
 	mocked.mock("bar").takes(true).returns(40);
 	mocked.bar(true); // gives 40
 	
+### Fails when calls any method in the mock object
+	var mocked = nodemock.fail();
+	mocked.foo(); //thorws an exception
+	mocked.bar(); //throws an exception
+	
+### Fails when calls some particular method in the mock object
+	var mocked = nodemock.mock("foo").fail();
+	mocked.mock("bar").takes(10);
+	mocked.foo(); //thorws an exception
+	mocked.bar(10); //works perfectly
+	
 API Documentation
 -----------------
 
@@ -88,6 +100,10 @@ API Documentation
 	
 	mocked.mock(methodName)
 		Used to alter or create a new mock method and add rules to it as usual
+		
+	mocked.fail()
+		If calls at very begining afterword any call on the mocked objects will fail
+		Otherwise current mock method will fails someone called that. 
 		
 License
 -------
