@@ -205,29 +205,6 @@ exports.testMockAgain = function(test) {
 	test.done();
 };
 
-exports.testMockEdit = function(test) {
-	
-	var mock = nm.mock("foo").takes(10).returns(30);
-	test.throws(function() {
-		test.equal(mock.foo(10, 20), 30);
-	});
-	
-	test.doesNotThrow(function() {
-		mock.mock("foo").takes(10, 20);
-		test.equal(mock.foo(10, 20), 30);
-	});
-	
-	test.doesNotThrow(function() {
-		mock.mock("foo").takes(function(){}).calls(0, [10]);
-		mock.foo(function(val) {
-			test.value(10, val);
-		});
-	});
-	
-	
-	test.done();
-};
-
 exports.testFailNoAnyMockMethod = function(test) {
 	
 	var mock = nm.fail();
@@ -248,5 +225,23 @@ exports.testFailOneMockMethod = function(test) {
 	test.doesNotThrow(function() {
 		mock.bar(10, 20);
 	});
+	test.done();
+};
+
+exports.testMultipleEntriesForOneMethod = function(test) {
+	var mock = nm.mock("foo").takes(10, 20).returns(30);
+	mock.mock("foo").takes(10, 30).returns(40);
+	
+	test.doesNotThrow(function() {
+		test.ok(mock.foo(10, 20) == 30);
+		test.ok(mock.foo(10, 30) == 40);
+	});
+	
+	test.throws(function() {
+		mock.foo(10);
+		mock.foo(10, 20);
+		mock.bar(10, 30);
+	});
+	
 	test.done();
 };
