@@ -245,3 +245,50 @@ exports.testMultipleEntriesForOneMethod = function(test) {
 	
 	test.done();
 };
+
+exports.testAssertFailsSameMethod = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, 20).returns(30);
+	mock.mock("foo").takes(10, 30).returns(40);
+	
+	mock.foo(10,20);
+	test.ok(!mock.assert());
+	test.done();
+};
+
+exports.testAssertFailsManyMethod = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, 20).returns(30);
+	mock.mock("bar").takes(10, 30).returns(40);
+	
+	mock.foo(10,20);
+	test.ok(!mock.assert());
+	test.done();
+};
+
+exports.testAssertOK = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, 20).returns(30);
+	mock.mock("foo").takes(10, 30).returns(40);
+	mock.mock("bar").returns(30);
+	
+	mock.foo(10,20);
+	mock.foo(10,30);
+	mock.bar();
+	test.ok(mock.assert());
+	test.done();
+};
+
+exports.testTimes = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, 20).times(2);
+	mock.foo(10, 20);
+	mock.foo(10, 20);
+	test.ok(mock.assert());
+
+	mock = nm.mock("bar").takes(10).times(2);
+	mock.bar(10);
+	test.ok(!mock.assert());
+	
+	test.done();
+};
