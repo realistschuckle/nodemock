@@ -25,7 +25,7 @@ Testing
 -------
 Node JS can be used with any testing framework. And we've used it with 
 Nodeunit and it's a perfect match.
-You can see nodemock matches with nodeunit - https://github.com/arunoda/nodemock/blob/master/test/nodemock.js
+(https://github.com/arunoda/nodemock/blob/master/test/nodemock.js "Nodemock with Nodeunit")
 
 Install
 ---------
