@@ -292,3 +292,19 @@ exports.testTimes = function(test) {
 	
 	test.done();
 };
+
+exports.testCtrl = function(test) {
+	
+	test.expect(2);
+	var ctrl = {};
+	var mock = nm.mock("foo").takes(10, 20, function() {}).ctrl(2, ctrl);
+	
+	mock.foo(10, 20, function(bb) {
+		test.ok(bb = 20);
+	});
+	
+	ctrl.trigger(20);
+	ctrl.trigger(20);
+	
+	test.done();
+};
