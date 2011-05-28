@@ -108,7 +108,7 @@ Usage
 API Documentation
 -----------------
 
-=== Construction ===
+### Construction ###
 
 	var mocked = require('nodemock').mock('foo');
 		Creating a object with mock function "foo"
@@ -116,7 +116,7 @@ API Documentation
 	mocked.mock(methodName)
 		Used to alter or create a new mock method and add rules to it as usual
 		
-=== Rules ===
+### Rules ###
 
 	mocked.takes(arg1, args2, ...)
 		Specify arguments of the function and verify then when calling
@@ -142,7 +142,7 @@ API Documentation
 		We can rule the mocked method to be called multiple times with same parameters
 		Finally we can check that using above assert method;
 	
-=== Confirm ===
+### Confirm ###
 
 	mocked.assert();
 		Checks whether rules we've defined using other methods were executed.
