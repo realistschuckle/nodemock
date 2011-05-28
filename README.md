@@ -9,17 +9,17 @@ Features
 --------
 Besides it's simplicity it supports following features
 
-	* Does not need an existing object to create the mock
-	* Verify arguments (we check deeply on objects and arrays to check the validity)
-	* Allow a return to be sent
-	* Assertion to check whether all the rules executed
-	* Callbacks can also be executed with providing arguments
-	* Multiple mock functions in one object
-	* Alter a mock function later on
-	* Method chaining allows creating mocks super easy
-	* Fail support added when calling method that should not be called
-	* Mock support to call a single method more than once
-	* Repetitive support
+* Does not need an existing object to create the mock
+* Verify arguments (we check deeply on objects and arrays to check the validity)
+* Allow a return to be sent
+* Assertion to check whether all the rules executed
+* Callbacks can also be executed with providing arguments
+* Multiple mock functions in one object
+* Alter a mock function later on
+* Method chaining allows creating mocks super easy
+* Fail support added when calling method that should not be called
+* Mock support to call a single method more than once
+* Repetitive support
 	
 Testing
 -------
@@ -108,14 +108,14 @@ Usage
 API Documentation
 -----------------
 
-	=== Construction ===
+=== Construction ===
 	var mocked = require('nodemock').mock('foo');
 		Creating a object with mock function "foo"
 	
 	mocked.mock(methodName)
 		Used to alter or create a new mock method and add rules to it as usual
 		
-	=== Rules ===
+=== Rules ===
 	mocked.takes(arg1, args2, ...)
 		Specify arguments of the function and verify then when calling
 		
@@ -140,7 +140,7 @@ API Documentation
 		We can rule the mocked method to be called multiple times with same parameters
 		Finally we can check that using above assert method;
 	
-	=== Confirm ===
+=== Confirm ===
 	mocked.assert();
 		Checks whether rules we've defined using other methods were executed.
 		If all the rules were executed return true, otherwise false
