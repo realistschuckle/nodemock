@@ -1,4 +1,4 @@
-/**
+/*
 
 	The MIT License
 	
@@ -22,8 +22,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
- */
-
+*/
 
 //NodeMock argument check
 var nm = require("../lib/nodemock");
@@ -199,7 +198,7 @@ exports.testMockAgain = function(test) {
 		test.equal(mock.bar(10), 40);
 	});
 	
-	test.doesNotThrow(function() {
+	test.throws(function() {
 		test.equal(mock.foo(10, 20), 30);
 	});
 	test.done();
@@ -344,4 +343,22 @@ exports.testPartialCompare = function (test){
 	
 	test.done()
 	
+}
+
+exports.multiReturn = function(test) {
+
+	var mock = nm.mock("foo").returns(1);
+	mock.mock("foo").returns(2);
+	mock.mock("foo").takes(1).returns(42);
+
+	test.equal(mock.foo(), 1, "good first return");
+	test.equal(mock.foo(), 2, "good second return");
+	test.equal(mock.foo(1), 42, "still match on arguments");
+	test.ok(mock.assert(), 'bad invoked mocks');
+
+	test.throws(function() {
+		test.equal(mock.foo(), 2, "re-uses second return");
+	});
+
+	test.done();
 }
