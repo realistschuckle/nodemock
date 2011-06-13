@@ -1,6 +1,6 @@
 {
     "name": "nodemock",
-    "version": "0.2.8beta",
+    "version": "0.2.9beta",
     "directories": {
         "lib": "./lib"
     },
