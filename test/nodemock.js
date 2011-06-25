@@ -343,7 +343,7 @@ exports.testPartialCompare = function (test){
 	
 	test.done()
 	
-}
+};
 
 exports.multiReturn = function(test) {
 
@@ -361,4 +361,12 @@ exports.multiReturn = function(test) {
 	});
 
 	test.done();
-}
+};
+
+exports.testCopyFunction = function(test) {
+	
+	var mock = nm.mock('foo').returns(10);
+	var foo = mock.foo;
+	test.equal(foo(), 10);
+	test.done();
+};
