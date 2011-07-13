@@ -397,3 +397,19 @@ exports.testCopyFunction = function(test) {
 	test.equal(foo(), 10);
 	test.done();
 };
+
+exports.testReset = function(test) {
+	
+	var mock = nm.mock('foo').returns(100);
+	test.equal(mock.foo(), 100);
+	test.ok(mock.assert());
+	
+	mock.reset();
+	test.ok(!mock.foo);
+	
+	mock.mock('doo').returns(300);
+	test.equal(mock.doo(), 300);
+	
+	test.ok(mock.assert());
+	test.done();	
+};
