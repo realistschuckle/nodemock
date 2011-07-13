@@ -56,6 +56,14 @@ Usage
 		When you invoke foo() nodemock will calls the callback(sits in argument index 1 - as specified)
 		with the parameters 30 and 40 respectively. 
 	*/
+
+### Controlling callbacks
+With the asynchronous nature of NodeJS(and brower with AJAX too) it'll be great if we can control the execution of the callback in the testing environment. And `ctrl()` of nodemock helps that
+
+	var ctrl = {};
+	var mocked = nodemock.mock('foo').takes(10, function() {}).ctrl(1, ctrl);
+	//where ever in your codebase
+	ctrl.trigger(10, 20); // you can call this as many as you want
 	
 ### Add multiple mock functions
 	var mocked = nodemock.mock("foo").takes(10).returns(30);
@@ -63,6 +71,7 @@ Usage
 	
 	mocked.mock("bar").takes(true).returns(40);
 	mocked.bar(true); // gives 40
+
 	
 ### Assertion Support
 	var mocked = nodemock.mock("foo").takes(20);
