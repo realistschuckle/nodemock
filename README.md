@@ -120,6 +120,18 @@ With the asynchronous nature of NodeJS(and brower with AJAX too) it'll be great 
 	
 	//check whether everything has done
 	mocked.assert(); //returns true
+
+### reset the mock
+	
+	var mocked = nm.mock('foo').returns(100);
+	mocked.foo(); //returns 100
+	mocked.assert(); //returns true
+		
+	mocked.reset();
+	
+	mocked.mock('doo').returns(300);
+	mocked.doo(); //returns 300
+	mock.assert() //returns true
 	
 	
 API Documentation
@@ -147,8 +159,7 @@ API Documentation
 		
 		when using this you've to define a function signature as a callback in the argument list
 		for a callback at index 2 .takes() function will be as,
-		
-		`mocked.takes(10, 20, function(){})
+		mocked.takes(10, 20, function(){})
 	
 		
 	mocked.fail()
@@ -158,6 +169,9 @@ API Documentation
 	mocked.times(repetitiveCount);
 		We can rule the mocked method to be called multiple times with same parameters
 		Finally we can check that using above assert method;
+
+	mocked.reset()
+		Reset all the rules and mocks created. And bring mocked object into a stage when it's created
 	
 ### Confirm ###
 
