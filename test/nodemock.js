@@ -278,6 +278,33 @@ exports.testAssertOK = function(test) {
 	test.done();
 };
 
+exports.testAssertThrowsFailed = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, 20).returns(30);
+	mock.mock("bar").takes(10, 30).returns(40);
+	
+	mock.foo(10,20);
+	test.throws(function() {
+		mock.assertThrows();
+	});
+	test.done();
+};
+
+exports.testAssertThrowsOK = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, 20).returns(30);
+	mock.mock("foo").takes(10, 30).returns(40);
+	mock.mock("bar").returns(30);
+	
+	mock.foo(10,20);
+	mock.foo(10,30);
+	mock.bar();
+	test.doesNotThrow(function() {
+		mock.assertThrows();
+	});
+	test.done();
+};
+
 exports.testTimes = function(test) {
 	
 	var mock = nm.mock("foo").takes(10, 20).times(2);

@@ -91,6 +91,14 @@ Usage
 	
 	mocked.foo(10, 20);
 	mocked.foo(10, 20);
+
+### calls a single mocked method, multiple times with different returns
+	
+	var mocked = nodemock.mock("foo").takes(10, 20).returns(100);
+	mocked.mock('foo').takes(10, 20).returns(200);
+
+	mocked.foo(10, 20); //returns 100
+	mocked.foo(10, 20); //returns 200
 	
 ### mock a single method more than once
 	var mocked = nodemock.mock("foo").takes(10, 20);
@@ -147,6 +155,9 @@ API Documentation
 	mocked.assert();
 		Checks whether rules we've defined using other methods were executed.
 		If all the rules were executed return true, otherwise false
+
+	mocked.assertThrows();
+		Same as the mocked.assert() but throws an execption if rules breaks.
 		
 License
 -------
