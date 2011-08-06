@@ -427,6 +427,18 @@ exports.testIgnore = function(test) {
 	});
 
 	test.done();
+		
+};
 
+exports.testIgnoreRootMethod = function(test) {
+	
+	var mock = nm.ignore('hello');
+	test.ok(mock.hello);
+
+	test.doesNotThrow(function() {
+		mock.hello();
+	});
+
+	test.done();
 		
 };
