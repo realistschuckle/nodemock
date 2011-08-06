@@ -413,3 +413,20 @@ exports.testReset = function(test) {
 	test.ok(mock.assert());
 	test.done();	
 };
+
+exports.testIgnore = function(test) {
+	
+	var mock = nm.mock('foo').returns(100);
+	test.equal(mock.foo(), 100);
+
+	mock.ignore('hello');
+	test.ok(mock.hello);
+
+	test.doesNotThrow(function() {
+		mock.hello();
+	});
+
+	test.done();
+
+		
+};
