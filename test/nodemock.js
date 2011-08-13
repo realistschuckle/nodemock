@@ -442,3 +442,19 @@ exports.testIgnoreRootMethod = function(test) {
 	test.done();
 		
 };
+
+exports.testIgnoreAfterReset = function(test) {
+	
+
+	var mock = nm.mock('foo').returns(10);
+	mock.reset();
+	mock.ignore('hello');
+	test.ok(mock.hello);
+
+	test.doesNotThrow(function() {
+		mock.hello();
+	});
+
+	test.done();
+		
+};
