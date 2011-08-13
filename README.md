@@ -20,6 +20,7 @@ Besides it's simplicity it supports following features
 * Fail support added when calling method that should not be called
 * Mock support to call a single method more than once
 * Repetitive support
+* ignore methods from mocking behaviour
 	
 Testing
 -------
@@ -131,8 +132,17 @@ With the asynchronous nature of NodeJS(and brower with AJAX too) it'll be great 
 	mocked.mock('doo').returns(300);
 	mocked.doo(); //returns 300
 	mock.assert() //returns true
-	
-	
+
+### ignore method
+Sometime we need to ignore some methods going through mocking rules. But we need to have those methods but doing nothing.
+
+	var mocked = mock.ignore('hello');
+	mocked.mock('foo').returns(100);
+
+	mock.foo(); //returns 100
+	mock.hello(); //do nothing but the method exists
+
+	mock.assert(); // return true, assert have nothing to do with ignored methods
 API Documentation
 -----------------
 
@@ -170,7 +180,11 @@ API Documentation
 		Finally we can check that using above assert method;
 
 	mocked.reset()
-		Reset all the rules and mocks created. And bring mocked object into a stage when it's created
+		Reset all the rules and mocks created. And bring mocked object into a stage when 
+it's created
+
+	mocked.ignore()
+		Ignore Some methods from the mocking behaviour
 	
 ### Confirm ###
 
