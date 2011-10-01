@@ -458,3 +458,13 @@ exports.testIgnoreAfterReset = function(test) {
 	test.done();
 		
 };
+
+exports.testFailThrowsNoExceptionWhenNotCalled = function(test){
+	
+	var mock = nm.mock('test').fail();
+	test.doesNotThrow(function() {
+		// the method was not called so, no exception should be thrown
+		mock.assertThrows();
+	});
+	test.done();
+}
