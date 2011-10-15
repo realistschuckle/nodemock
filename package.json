@@ -1,6 +1,6 @@
 {
     "name": "nodemock",
-    "version": "0.2.15",
+    "version": "0.2.16",
     "directories": {
         "lib": "./lib"
     },
@@ -19,5 +19,7 @@
     {
         "type" : "git",
         "url" : "git@github.com:arunoda/nodemock.git"
-    }
+    },
+
+    "tags" : ["mock", "unit", "testing", "nodemock"]
 }
