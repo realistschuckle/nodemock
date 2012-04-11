@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Nodemock by arunoda</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Nodemock</h1>
+        <p>Simple Yet Powerful Mocking Framework for NodeJs</p>
+        <p class="view"><a href="https://github.com/arunoda/nodemock">View the Project on GitHub <small>arunoda/nodemock</small></a></p>
+        <ul>
+          <li><a href="https://github.com/arunoda/nodemock/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/arunoda/nodemock/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/arunoda/nodemock">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>NodeMock is a very simple to use mocking framework which can be used to 
+mock functions in JavaScript objects. 
+NodeMock creates mock methods in less code with more expressive manner</p>
+
+<h2>Features</h2>
+
+<p>Besides it's simplicity it supports following features</p>
+
+<ul>
+<li>Does not need an existing object to create the mock</li>
+<li>Verify arguments (we check deeply on objects and arrays to check the validity)</li>
+<li>Allow a return to be sent</li>
+<li>Assertion to check whether all the rules executed</li>
+<li>Callbacks can also be executed with providing arguments</li>
+<li>Multiple mock functions in one object</li>
+<li>Alter a mock function later on</li>
+<li>Method chaining allows creating mocks super easy</li>
+<li>Fail support added when calling method that should not be called</li>
+<li>Mock support to call a single method more than once</li>
+<li>Repetitive support</li>
+<li>ignore methods from mocking behaviour</li>
+</ul><h2>Testing</h2>
+
+<p>Node JS can be used with any testing framework. And we've used it with Nodeunit and it's a perfect match.
+<a href="https://github.com/arunoda/nodemock/blob/master/test/nodemock.js" title="Nodemock with Nodeunit">See Examples</a></p>
+
+<h2>Install</h2>
+
+<pre><code>npm install nodemock
+</code></pre>
+
+<h2>Usage</h2>
+
+<h3>Load the Module</h3>
+
+<pre><code>var nodemock = require("nodemock");
+</code></pre>
+
+<h3>Creating a mock function with taking arguments and return value</h3>
+
+<pre><code>var mocked = nodemock.mock("foo").takes(10, [10, 20, 30]).returns(98);
+
+mocked.foo(10, [10, 20, 30]); // this will return 98
+
+mocked.foo(10); //throws execption
+</code></pre>
+
+<h3>Creating a mock with callback support</h3>
+
+<pre><code>var mocked = nodemock.mock("foo").takes(20, function(){}).calls(1, [30, 40]);
+
+mocked.foo(20, function(num, arr) {
+    console.log(num); //prints 30
+    console.log(arr); //prints 40
+});
+
+/*
+    When you invoke foo() nodemock will calls the callback(sits in argument index 1 - as specified)
+    with the parameters 30 and 40 respectively. 
+*/
+</code></pre>
+
+<h3>Controlling callbacks</h3>
+
+<p>With the asynchronous nature of NodeJS(and brower with AJAX too) it'll be great if we can control the execution of the callback in the testing environment. And <code>ctrl()</code> of nodemock helps that</p>
+
+<pre><code>var ctrl = {};
+var mocked = nodemock.mock('foo').takes(10, function() {}).ctrl(1, ctrl);
+//where ever in your codebase
+ctrl.trigger(10, 20); // you can call this as many as you want
+</code></pre>
+
+<h3>Add multiple mock functions</h3>
+
+<pre><code>var mocked = nodemock.mock("foo").takes(10).returns(30);
+mocked.foo(10); //gives 30
+
+mocked.mock("bar").takes(true).returns(40);
+mocked.bar(true); // gives 40
+</code></pre>
+
+<h3>Assertion Support</h3>
+
+<pre><code>var mocked = nodemock.mock("foo").takes(20);
+var mocked = nodemock.mock("bar").takes(40);
+
+mocked.foo(20);
+mocked.bar(40);
+
+//check whether what we've defined is actually executed
+mocked.assert(); //returns true
+</code></pre>
+
+<h3>Fails when calls any method in the mock object</h3>
+
+<pre><code>var mocked = nodemock.fail();
+mocked.foo(); //thorws an exception
+mocked.bar(); //throws an exception
+</code></pre>
+
+<h3>Fails when calls some particular method in the mock object</h3>
+
+<pre><code>var mocked = nodemock.mock("foo").fail();
+mocked.mock("bar").takes(10);
+mocked.foo(); //thorws an exception
+mocked.bar(10); //works perfectly
+</code></pre>
+
+<h3>calls a single mocked method, multiple times</h3>
+
+<pre><code>var mocked = nodemock.mock("foo").takes(10, 20).times(2);
+
+mocked.foo(10, 20);
+mocked.foo(10, 20);
+</code></pre>
+
+<h3>calls a single mocked method, multiple times with different returns</h3>
+
+<pre><code>var mocked = nodemock.mock("foo").takes(10, 20).returns(100);
+mocked.mock('foo').takes(10, 20).returns(200);
+
+mocked.foo(10, 20); //returns 100
+mocked.foo(10, 20); //returns 200
+</code></pre>
+
+<h3>mock a single method more than once</h3>
+
+<pre><code>var mocked = nodemock.mock("foo").takes(10, 20);
+mocked.mock("foo").takes(20, 30);
+mocked.mock("foo").takes(500);
+
+mocked.foo(10, 20);
+mocked.foo(20, 30)
+mocked.foo(500);
+
+//check whether everything has done
+mocked.assert(); //returns true
+</code></pre>
+
+<h3>reset the mock</h3>
+
+<pre><code>var mocked = nm.mock('foo').returns(100);
+mocked.foo(); //returns 100
+mocked.assert(); //returns true
+
+mocked.reset();
+
+mocked.mock('doo').returns(300);
+mocked.doo(); //returns 300
+mock.assert() //returns true
+</code></pre>
+
+<h3>ignore method</h3>
+
+<p>Sometime we need to ignore some methods going through mocking rules. But we need to have those methods but doing nothing.</p>
+
+<pre><code>var mocked = mock.ignore('hello');
+mocked.mock('foo').returns(100);
+
+mock.foo(); //returns 100
+mock.hello(); //do nothing but the method exists
+
+mock.assert(); // return true, assert have nothing to do with ignored methods
+</code></pre>
+
+<h2>API Documentation</h2>
+
+<h3>Construction</h3>
+
+<pre><code>var mocked = require('nodemock').mock('foo');
+    Creating a object with mock function "foo"
+
+mocked.mock(methodName)
+    Used to alter or create a new mock method and add rules to it as usual
+</code></pre>
+
+<h3>Rules</h3>
+
+<pre><code>mocked.takes(arg1, args2, ...)
+    Specify arguments of the function and verify then when calling
+
+mocked.returns(returnValue)
+    Specify the return value of the function
+
+mocked.calls(callbackPosition, argumentsArray)       
+    Calls a callback at the arguments in index `callbackPosition`
+    with the arguments specified in the "argumentsArray"
+
+    when using this you've to define a function signature as a callback in the argument list
+    for a callback at index 2 .takes() function will be as,
+    mocked.takes(10, 20, function(){})
+
+
+mocked.fail()
+    If calls at very begining afterword any call on the mocked objects will fail
+    Otherwise current mock method will fails someone called that. 
+
+mocked.times(repetitiveCount);
+    We can rule the mocked method to be called multiple times with same parameters
+    Finally we can check that using above assert method;
+
+mocked.reset()
+    Reset all the rules and mocks created. And bring mocked object into a stage when 
+</code></pre>
+
+<p>it's created</p>
+
+<pre><code>mocked.ignore()
+    Ignore Some methods from the mocking behaviour
+</code></pre>
+
+<h3>Confirm</h3>
+
+<pre><code>mocked.assert();
+    Checks whether rules we've defined using other methods were executed.
+    If all the rules were executed return true, otherwise false
+
+mocked.assertThrows();
+    Same as the mocked.assert() but throws an execption if rules breaks.
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/arunoda">arunoda</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
