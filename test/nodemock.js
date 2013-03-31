@@ -496,3 +496,20 @@ exports.testTakesAll = function(test) {
 	test.equals(mock.withAll("whatever"), 4, "takesAll test correct");
 	test.done();	
 }
+
+exports.testReturnsF = function(test) {
+	var mock = nm.mock("withReturnFunction").takes(2).returnsF(function(args) {
+		return(args*2);
+	})
+
+	test.equals(mock.withReturnFunction(2), 4, "returnsF test correct");
+
+	var mock2 = nm.mock("withReturnFunction").takesF(function(args) {
+		return(args % 2 == 0)
+	}).returnsF(function(args) {
+		return(args * 2)
+	})
+	test.equals(mock2.withReturnFunction(4), 8, "returnsF test correct");
+
+	test.done();
+}
