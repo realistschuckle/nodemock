@@ -468,3 +468,31 @@ exports.testFailThrowsNoExceptionWhenNotCalled = function(test){
 	});
 	test.done();
 }
+
+exports.testTakesF = function(test) {
+	// Input validator function that allows even numbers and refuses odds numbers
+	var takesValidator = function(input) {
+		if(input % 2 == 0) return true;
+		else return false;
+	}
+
+	// should pass
+	var mock1 = nm.mock("withFunction").takesF(takesValidator).returns(4);
+	test.equals(mock1.withFunction(2), 4, "takesF test correct");
+	var mock2 = nm.mock("withFunction").takesF(takesValidator).returns(4);
+	test.equals(mock2.withFunction(8), 4, "takesF test correct");
+	// should fail
+	test.throws(function() {
+		var mock = nm.mock("withFunction").takesF(takesValidator).returns(4);
+		test.equals(mock.withFunction(3), 4, "takesF test correct");	
+	})
+	
+	test.done();
+}
+
+exports.testTakesAll = function(test) {
+	var mock = nm.mock("withAll").takesAll().returns(4);
+
+	test.equals(mock.withAll("whatever"), 4, "takesAll test correct");
+	test.done();	
+}
