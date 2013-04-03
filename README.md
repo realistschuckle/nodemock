@@ -3,7 +3,8 @@ Mockingbird - A NodeMock fork
 
 Mockingbird is a fork of NodeMock 0.2.17 that introduces specific capabilities that allow mocking functions
 to accept and return values based on functions and not just static values. These capabilities are for now 
-(as of version 0.3.0 of Mockingbird) the only differences with NodeMock.
+(as of version 0.3.0 of Mockingbird) the only differences with NodeMock though more features are planned to be
+added in the future.
 
 The documentation below is an udpated version of NodeMock's, and the names Mockingbird and NodeMock are
 used interchangeably.
@@ -340,6 +341,10 @@ Same as the mocked.assert() but throws an execption if rules breaks.
 ```javascript
 mocked.assertThrows();
 ```
+
+Reasons for the fork
+--------------------
+A pull request was submitted to the original maintainer of NodeMock but as no response has been received yet and as these changes may be useful to other Node.js projects, the fork was released.
 		
 Roadmap
 -------
