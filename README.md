@@ -37,7 +37,7 @@ Besides it's simplicity it supports following features
 * Ability to provide functions to determine valid input for mocked functions
 * Ability to provide functions to generate output from mocked functions
 	
-Testin
+Testing
 -------
 Mockingbird can be used with any testing framework. And we've used it with Nodeunit and it's a perfect match.
 [See Examples](https://github.com/arunoda/nodemock/blob/master/test/nodemock.js "Nodemock with Nodeunit")
