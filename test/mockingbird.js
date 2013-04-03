@@ -25,7 +25,7 @@
 */
 
 //NodeMock argument check
-var nm = require("../lib/nodemock");
+var nm = require("../lib/mockingbird");
 
 exports.testArgumentSimple = function(test) {
 	
