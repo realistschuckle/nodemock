@@ -29,7 +29,9 @@ Node JS can be used with any testing framework. And we've used it with Nodeunit 
 
 Install
 ---------
-```npm install nodemock```
+```
+npm install nodemock
+```
 
 Usage
 ------
