@@ -1,25 +1,58 @@
 {
-    "name": "nodemock",
-    "version": "0.2.17",
-    "directories": {
-        "lib": "./lib"
-    },
-    "main": "./lib/nodemock",
-    "description": "Simple Yet Powerful Mocking Framework for NodeJs",
-    "author": "Arunoda Susiripala <arunoda.susiripala@gmail.com>",
-    "homepage": "https://github.com/arunoda/nodemock",
-    "licenses": [
-        {
-            "type": "The MIT License",
-            "url": "http://www.opensource.org/licenses/mit-license.php"
-        }
-    ],
-    
-    "repository" :
+  "name": "nodemock",
+  "version": "0.3.0",
+  "directories": {
+    "test": "test"
+  },
+  "main": "./lib/nodemock",
+  "description": "Simple Yet Powerful Mocking Framework for NodeJs",
+  "author": "Arunoda Susiripala <arunoda.susiripala@gmail.com>",
+  "homepage": "http://curtis.schlak.com/nodemock/",
+  "contributors": [
+    "Curtis Schlak <realistschuckle@gmail.com>",
+    "Oscar Renalias <oscar@renalias.net>"
+  ],
+  "scripts": {
+    "test": "grunt test"
+  },
+  "licenses": [
     {
-        "type" : "git",
-        "url" : "git@github.com:arunoda/nodemock.git"
-    },
-
-    "tags" : ["mock", "unit", "testing", "nodemock"]
+      "type": "The MIT License",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "nodeunit": "= 0.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:realistschuckle/nodemock.git"
+  },
+  "tags": [
+    "mock",
+    "unit",
+    "testing",
+    "nodemock",
+    "mockingbird"
+  ],
+  "bugs": {
+    "url": "https://github.com/realistschuckle/nodemock/issues"
+  },
+  "dependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "nodeunit": "~0.7.4"
+  },
+  "keywords": [
+    "mock",
+    "unit",
+    "testing",
+    "nodemock",
+    "mockingbird"
+  ],
+  "license": "MIT-License"
 }
