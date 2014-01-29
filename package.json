@@ -1,6 +1,6 @@
 {
     "name": "nodemock",
-    "version": "0.2.17",
+    "version": "0.3.0",
     "directories": {
         "lib": "./lib"
     },
@@ -9,20 +9,35 @@
     "author": "Arunoda Susiripala <arunoda.susiripala@gmail.com>",
     "homepage": "https://github.com/realistschuckle/nodemock",
     "contributors": [
-        "Curtis Schlak <realistschuckle@gmail.com>"
+        "Curtis Schlak <realistschuckle@gmail.com>",
+            {
+        "name": "Oscar Renalias", 
+        "email": "oscar@renalias.net"
+    }
+
     ],
+    "contributors": [
+        ],
+    "scripts": {
+        "test": "grunt test"
+    },
     "licenses": [
         {
             "type": "The MIT License",
             "url": "http://www.opensource.org/licenses/mit-license.php"
         }
     ],
-    
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "nodeunit": "= 0.7.4"
+  },        
     "repository" :
     {
         "type" : "git",
         "url" : "git@github.com:realistschuckle/nodemock.git"
     },
 
-    "tags" : ["mock", "unit", "testing", "nodemock"]
+    "tags" : ["mock", "unit", "testing", "nodemock", "mockingbird"]
 }
