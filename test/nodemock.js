@@ -27,6 +27,19 @@
 //NodeMock argument check
 var nm = require("../lib/nodemock");
 
+exports.mocksHaveNames = function(test) {
+	var mockName = 'myFabulousMock',
+			mock = nm.named(mockName).mock('foo').takes(1);
+
+	try {
+		mock.assertThrows();
+	} catch(e) {
+		test.ok(e.message.indexOf(mockName) > -1);
+	}
+	test.expect(1);
+	test.done();
+};
+
 exports.testArgumentSimple = function(test) {
 	
 	var mock = nm.mock("foo").takes(10, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
@@ -247,7 +260,7 @@ exports.testMultipleEntriesForOneMethod = function(test) {
 
 exports.testAssertFailsSameMethod = function(test) {
 	
-	var mock = nm.mock("foo").takes(10, 20).returns(30);
+	var mock = nm.named('mocky').mock("foo").takes(10, 20).returns(30);
 	mock.mock("foo").takes(10, 30).returns(40);
 	
 	mock.foo(10,20);
@@ -257,7 +270,7 @@ exports.testAssertFailsSameMethod = function(test) {
 
 exports.testAssertFailsManyMethod = function(test) {
 	
-	var mock = nm.mock("foo").takes(10, 20).returns(30);
+	var mock = nm.named('mockier').mock("foo").takes(10, 20).returns(30);
 	mock.mock("bar").takes(10, 30).returns(40);
 	
 	mock.foo(10,20);

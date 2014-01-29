@@ -45,6 +45,17 @@ Usage
 ### Load the Module
     var nodemock = require("nodemock");
 
+### Name a mock for clarity
+    var mocks = [
+          nodemock.named('mock1').mock('foo').takes(1),
+          nodemock.named('mock2').mock('foo').takes(1)
+        ],
+        i;
+
+    for(i = 0; i < mocks.length; i += 1) {
+      mocks[i].assert(); // Prints that «mockName».foo(1) was not called.
+    }
+
 ### Creating a mock function with taking arguments and return value
     var mocked = nodemock.mock("foo").takes(10, [10, 20, 30]).returns(98);
     
