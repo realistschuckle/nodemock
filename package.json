@@ -7,7 +7,10 @@
     "main": "./lib/nodemock",
     "description": "Simple Yet Powerful Mocking Framework for NodeJs",
     "author": "Arunoda Susiripala <arunoda.susiripala@gmail.com>",
-    "homepage": "https://github.com/arunoda/nodemock",
+    "homepage": "https://github.com/realistschuckle/nodemock",
+    "contributors": [
+        "Curtis Schlak <realistschuckle@gmail.com>"
+    ],
     "licenses": [
         {
             "type": "The MIT License",
@@ -18,7 +21,7 @@
     "repository" :
     {
         "type" : "git",
-        "url" : "git@github.com:arunoda/nodemock.git"
+        "url" : "git@github.com:realistschuckle/nodemock.git"
     },
 
     "tags" : ["mock", "unit", "testing", "nodemock"]
