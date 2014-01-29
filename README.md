@@ -67,26 +67,26 @@ Usage
       index 1 - as specified) with the parameters 30 and 40 respectively. 
     */
 
-	
+  
 ### Creating a mock function that takes variable parameters
 
     var mocked = nodemock.mock("foo").takes(function(args) {
-    	return(args % 2 == 0) 
+      return(args % 2 == 0) 
     });
-    mocked.foo(4)	// works
+    mocked.foo(4) // works
 
-    mocked.foo(5)	// fails
+    mocked.foo(5) // fails
 
 ### Creating a mock function that takes variable parameters and returns dynamic values
 
     var mocked = nodemock.mock("foo").takesF(function(args) {
-    	return(args % 2 == 0) 
+      return(args % 2 == 0) 
     }).returnsF(function(args) {
-    	return(args * 2)
+      return(args * 2)
     });
-    mocked.foo(4)	// returns 8
+    mocked.foo(4) // returns 8
 
-    mocked.foo(5)	// fails
+    mocked.foo(5) // fails
 
 ### Creating a mock with callback support
 
@@ -95,12 +95,12 @@ Usage
                          .calls(1, [30, 40]);
 
     mocked.foo(20, function(num, arr) {
-    	console.log(num); //prints 30
-    	console.log(arr); //prints 40
+      console.log(num); //prints 30
+      console.log(arr); //prints 40
     });
 
     /*
-    	When you invoke foo() nodemock will calls the callback (sits in argument
+      When you invoke foo() nodemock will calls the callback (sits in argument
       index 1 - as specified) with the parameters 30 and 40 respectively. 
     */
 
@@ -262,3 +262,12 @@ API Documentation
 
     mocked.assertThrows();
       Same as the mocked.assert() but throws an execption if rules breaks.
+
+## Copyright
+
+Copyright (c) 2011 Arunoda Susiripala
+
+[Modifications from the `mockingbird` fork](https://github.com/realistschuckle/nodemock/commit/4943c7ea5597cecab09289ca55d3aff88524cbc5),
+Copyright (c) 2013 Oscar Renalias
+
+Remaining copyrights owned by individual contributors.
