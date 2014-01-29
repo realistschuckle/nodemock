@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Nodemock by arunoda</title>
-    
+    <title>Nodemock by realistschuckle</title>
+
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -17,11 +19,11 @@
       <header>
         <h1>Nodemock</h1>
         <p>Simple Yet Powerful Mocking Framework for NodeJs</p>
-        <p class="view"><a href="https://github.com/arunoda/nodemock">View the Project on GitHub <small>arunoda/nodemock</small></a></p>
+        <p class="view"><a href="https://github.com/realistschuckle/nodemock">View the Project on GitHub <small>realistschuckle/nodemock</small></a></p>
         <ul>
-          <li><a href="https://github.com/arunoda/nodemock/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/arunoda/nodemock/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/arunoda/nodemock">Fork On <strong>GitHub</strong></a></li>
+          <li><a href="https://github.com/realistschuckle/nodemock/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/realistschuckle/nodemock/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/realistschuckle/nodemock">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
@@ -29,7 +31,8 @@
 mock functions in JavaScript objects. 
 NodeMock creates mock methods in less code with more expressive manner</p>
 
-<h2>Features</h2>
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <p>Besides it's simplicity it supports following features</p>
 
@@ -46,24 +49,29 @@ NodeMock creates mock methods in less code with more expressive manner</p>
 <li>Mock support to call a single method more than once</li>
 <li>Repetitive support</li>
 <li>ignore methods from mocking behaviour</li>
-</ul><h2>Testing</h2>
+</ul><h2>
+<a name="testing" class="anchor" href="#testing"><span class="octicon octicon-link"></span></a>Testing</h2>
 
 <p>Node JS can be used with any testing framework. And we've used it with Nodeunit and it's a perfect match.
 <a href="https://github.com/arunoda/nodemock/blob/master/test/nodemock.js" title="Nodemock with Nodeunit">See Examples</a></p>
 
-<h2>Install</h2>
+<h2>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h2>
 
 <pre><code>npm install nodemock
 </code></pre>
 
-<h2>Usage</h2>
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<h3>Load the Module</h3>
+<h3>
+<a name="load-the-module" class="anchor" href="#load-the-module"><span class="octicon octicon-link"></span></a>Load the Module</h3>
 
 <pre><code>var nodemock = require("nodemock");
 </code></pre>
 
-<h3>Creating a mock function with taking arguments and return value</h3>
+<h3>
+<a name="creating-a-mock-function-with-taking-arguments-and-return-value" class="anchor" href="#creating-a-mock-function-with-taking-arguments-and-return-value"><span class="octicon octicon-link"></span></a>Creating a mock function with taking arguments and return value</h3>
 
 <pre><code>var mocked = nodemock.mock("foo").takes(10, [10, 20, 30]).returns(98);
 
@@ -72,7 +80,8 @@ mocked.foo(10, [10, 20, 30]); // this will return 98
 mocked.foo(10); //throws execption
 </code></pre>
 
-<h3>Creating a mock with callback support</h3>
+<h3>
+<a name="creating-a-mock-with-callback-support" class="anchor" href="#creating-a-mock-with-callback-support"><span class="octicon octicon-link"></span></a>Creating a mock with callback support</h3>
 
 <pre><code>var mocked = nodemock.mock("foo").takes(20, function(){}).calls(1, [30, 40]);
 
@@ -87,7 +96,8 @@ mocked.foo(20, function(num, arr) {
 */
 </code></pre>
 
-<h3>Controlling callbacks</h3>
+<h3>
+<a name="controlling-callbacks" class="anchor" href="#controlling-callbacks"><span class="octicon octicon-link"></span></a>Controlling callbacks</h3>
 
 <p>With the asynchronous nature of NodeJS(and brower with AJAX too) it'll be great if we can control the execution of the callback in the testing environment. And <code>ctrl()</code> of nodemock helps that</p>
 
@@ -97,7 +107,8 @@ var mocked = nodemock.mock('foo').takes(10, function() {}).ctrl(1, ctrl);
 ctrl.trigger(10, 20); // you can call this as many as you want
 </code></pre>
 
-<h3>Add multiple mock functions</h3>
+<h3>
+<a name="add-multiple-mock-functions" class="anchor" href="#add-multiple-mock-functions"><span class="octicon octicon-link"></span></a>Add multiple mock functions</h3>
 
 <pre><code>var mocked = nodemock.mock("foo").takes(10).returns(30);
 mocked.foo(10); //gives 30
@@ -106,7 +117,8 @@ mocked.mock("bar").takes(true).returns(40);
 mocked.bar(true); // gives 40
 </code></pre>
 
-<h3>Assertion Support</h3>
+<h3>
+<a name="assertion-support" class="anchor" href="#assertion-support"><span class="octicon octicon-link"></span></a>Assertion Support</h3>
 
 <pre><code>var mocked = nodemock.mock("foo").takes(20);
 var mocked = nodemock.mock("bar").takes(40);
@@ -118,14 +130,16 @@ mocked.bar(40);
 mocked.assert(); //returns true
 </code></pre>
 
-<h3>Fails when calls any method in the mock object</h3>
+<h3>
+<a name="fails-when-calls-any-method-in-the-mock-object" class="anchor" href="#fails-when-calls-any-method-in-the-mock-object"><span class="octicon octicon-link"></span></a>Fails when calls any method in the mock object</h3>
 
 <pre><code>var mocked = nodemock.fail();
 mocked.foo(); //thorws an exception
 mocked.bar(); //throws an exception
 </code></pre>
 
-<h3>Fails when calls some particular method in the mock object</h3>
+<h3>
+<a name="fails-when-calls-some-particular-method-in-the-mock-object" class="anchor" href="#fails-when-calls-some-particular-method-in-the-mock-object"><span class="octicon octicon-link"></span></a>Fails when calls some particular method in the mock object</h3>
 
 <pre><code>var mocked = nodemock.mock("foo").fail();
 mocked.mock("bar").takes(10);
@@ -133,7 +147,8 @@ mocked.foo(); //thorws an exception
 mocked.bar(10); //works perfectly
 </code></pre>
 
-<h3>calls a single mocked method, multiple times</h3>
+<h3>
+<a name="calls-a-single-mocked-method-multiple-times" class="anchor" href="#calls-a-single-mocked-method-multiple-times"><span class="octicon octicon-link"></span></a>calls a single mocked method, multiple times</h3>
 
 <pre><code>var mocked = nodemock.mock("foo").takes(10, 20).times(2);
 
@@ -141,7 +156,8 @@ mocked.foo(10, 20);
 mocked.foo(10, 20);
 </code></pre>
 
-<h3>calls a single mocked method, multiple times with different returns</h3>
+<h3>
+<a name="calls-a-single-mocked-method-multiple-times-with-different-returns" class="anchor" href="#calls-a-single-mocked-method-multiple-times-with-different-returns"><span class="octicon octicon-link"></span></a>calls a single mocked method, multiple times with different returns</h3>
 
 <pre><code>var mocked = nodemock.mock("foo").takes(10, 20).returns(100);
 mocked.mock('foo').takes(10, 20).returns(200);
@@ -150,7 +166,8 @@ mocked.foo(10, 20); //returns 100
 mocked.foo(10, 20); //returns 200
 </code></pre>
 
-<h3>mock a single method more than once</h3>
+<h3>
+<a name="mock-a-single-method-more-than-once" class="anchor" href="#mock-a-single-method-more-than-once"><span class="octicon octicon-link"></span></a>mock a single method more than once</h3>
 
 <pre><code>var mocked = nodemock.mock("foo").takes(10, 20);
 mocked.mock("foo").takes(20, 30);
@@ -164,7 +181,8 @@ mocked.foo(500);
 mocked.assert(); //returns true
 </code></pre>
 
-<h3>reset the mock</h3>
+<h3>
+<a name="reset-the-mock" class="anchor" href="#reset-the-mock"><span class="octicon octicon-link"></span></a>reset the mock</h3>
 
 <pre><code>var mocked = nm.mock('foo').returns(100);
 mocked.foo(); //returns 100
@@ -177,7 +195,8 @@ mocked.doo(); //returns 300
 mock.assert() //returns true
 </code></pre>
 
-<h3>ignore method</h3>
+<h3>
+<a name="ignore-method" class="anchor" href="#ignore-method"><span class="octicon octicon-link"></span></a>ignore method</h3>
 
 <p>Sometime we need to ignore some methods going through mocking rules. But we need to have those methods but doing nothing.</p>
 
@@ -190,9 +209,11 @@ mock.hello(); //do nothing but the method exists
 mock.assert(); // return true, assert have nothing to do with ignored methods
 </code></pre>
 
-<h2>API Documentation</h2>
+<h2>
+<a name="api-documentation" class="anchor" href="#api-documentation"><span class="octicon octicon-link"></span></a>API Documentation</h2>
 
-<h3>Construction</h3>
+<h3>
+<a name="construction" class="anchor" href="#construction"><span class="octicon octicon-link"></span></a>Construction</h3>
 
 <pre><code>var mocked = require('nodemock').mock('foo');
     Creating a object with mock function "foo"
@@ -201,7 +222,8 @@ mocked.mock(methodName)
     Used to alter or create a new mock method and add rules to it as usual
 </code></pre>
 
-<h3>Rules</h3>
+<h3>
+<a name="rules" class="anchor" href="#rules"><span class="octicon octicon-link"></span></a>Rules</h3>
 
 <pre><code>mocked.takes(arg1, args2, ...)
     Specify arguments of the function and verify then when calling
@@ -236,7 +258,8 @@ mocked.reset()
     Ignore Some methods from the mocking behaviour
 </code></pre>
 
-<h3>Confirm</h3>
+<h3>
+<a name="confirm" class="anchor" href="#confirm"><span class="octicon octicon-link"></span></a>Confirm</h3>
 
 <pre><code>mocked.assert();
     Checks whether rules we've defined using other methods were executed.
@@ -246,12 +269,12 @@ mocked.assertThrows();
     Same as the mocked.assert() but throws an execption if rules breaks.
 </code></pre>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/arunoda">arunoda</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/realistschuckle">realistschuckle</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
