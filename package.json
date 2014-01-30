@@ -10,7 +10,11 @@
   "homepage": "http://curtis.schlak.com/nodemock/",
   "contributors": [
     "Curtis Schlak <realistschuckle@gmail.com>",
-    "Oscar Renalias <oscar@renalias.net>"
+    "Oscar Renalias <oscar@renalias.net>",
+    "Aaron Fay <aaron.j.fay@gmail.com>",
+    "Dominic Tarr <dominic.tarr@gmail.com>",
+    "Daniel @0xDB",
+    "Gabriel Falcão <gabriel@nacaolivre.org>"
   ],
   "scripts": {
     "test": "grunt test"
