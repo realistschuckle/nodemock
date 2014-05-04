@@ -1,19 +1,19 @@
 /*
 
 	The MIT License
-	
+
 	Copyright (c) 2011 Arunoda Susiripala
-	
+
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
 	in the Software without restriction, including without limitation the rights
 	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 	copies of the Software, and to permit persons to whom the Software is
 	furnished to do so, subject to the following conditions:
-	
+
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
-	
+
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -120,7 +120,7 @@ exports['mocked functions pattern match on'] = {
 
 , 'differing arguments': function(test) {
 		var mock = nm.mock("foo").takes(10, 20).returns(30);
-		mock.mock("foo").takes(10, 30).returns(40);	
+		mock.mock("foo").takes(10, 30).returns(40);
 		test.doesNotThrow(function() {
 			test.ok(mock.foo(10, 20) == 30);
 			test.ok(mock.foo(10, 30) == 40);
@@ -229,7 +229,7 @@ exports['mocked functions are strict by default'] = function(test) {
 	mock.mock("bar").takes(10).returns(40);
 	test.doesNotThrow(function() {
 		test.equal(mock.bar(10), 40);
-	});	
+	});
 	test.throws(function() {
 		test.equal(mock.foo(10, 20), 30);
 	});
@@ -249,7 +249,7 @@ exports['mock can have both fail and non-fail functions'] = function(test) {
 	mock.mock("bar").takes(10, 20);
 	test.throws(function() {
 		mock.foo();
-	});	
+	});
 	test.doesNotThrow(function() {
 		mock.bar(10, 20);
 	});
@@ -294,7 +294,7 @@ exports['assert returns'] = {
 		mock.foo(10,30);
 		mock.bar();
 		test.ok(mock.assert());
-		test.done();		
+		test.done();
 	}
 
 , 'false for not meeting explicit times expectation': function(test) {
@@ -306,7 +306,7 @@ exports['assert returns'] = {
 		mock = nm.mock("bar").takes(10).times(2);
 		mock.bar(10);
 		test.ok(!mock.assert());
-		
+
 		test.done();
 	}
 };
@@ -344,7 +344,7 @@ exports['ctrl triggers the invocation of a callback'] = function(test) {
 		test.ok(bb = 20);
 	});
 	ctrl.trigger(20);
-	ctrl.trigger(20);	
+	ctrl.trigger(20);
 	test.done();
 };
 
@@ -402,9 +402,9 @@ exports['reset mocks clears previous invocation count'] = function(test) {
 	mock.reset();
 	test.ok(!mock.foo);
 	mock.mock('doo').returns(300);
-	test.equal(mock.doo(), 300);	
+	test.equal(mock.doo(), 300);
 	test.ok(mock.assert());
-	test.done();	
+	test.done();
 };
 
 exports['ignored mock functions do not throw on multiple invocations'] = function(test) {
@@ -461,9 +461,9 @@ exports.testTakesF = function(test) {
 	// should fail
 	test.throws(function() {
 		var mock = nm.mock("withFunction").takesF(takesValidator).returns(4);
-		test.equals(mock.withFunction(3), 4, "takesF test correct");	
+		test.equals(mock.withFunction(3), 4, "takesF test correct");
 	})
-	
+
 	test.done();
 }
 
@@ -471,7 +471,7 @@ exports.testTakesAll = function(test) {
 	var mock = nm.mock("withAll").takesAll().returns(4);
 
 	test.equals(mock.withAll("whatever"), 4, "takesAll test correct");
-	test.done();	
+	test.done();
 }
 
 exports.testReturnsF = function(test) {
@@ -487,6 +487,18 @@ exports.testReturnsF = function(test) {
 		return(args * 2)
 	})
 	test.equals(mock2.withReturnFunction(4), 8, "returnsF test correct");
+
+	test.done();
+}
+
+exports['compares buffers ok'] = function (test) {
+	var mock = nm.mock('foo').takes(new Buffer('123')).returns(1);
+	test.equals(mock.foo(new Buffer('123')), 1);
+
+	mock = nm.mock('foo').takes(new Buffer('123')).returns(1);
+	test.throws(function() {
+		test.equals(mock.foo(new Buffer('234')), 1);
+	});
 
 	test.done();
 }
