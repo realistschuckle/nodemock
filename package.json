@@ -1,15 +1,14 @@
 {
   "name": "nodemock",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "directories": {
     "test": "test"
   },
   "main": "./lib/nodemock",
   "description": "Simple Yet Powerful Mocking Framework for NodeJs",
-  "author": "Arunoda Susiripala <arunoda.susiripala@gmail.com>",
+  "author": "Curtis Schlak <realistschuckle@gmail.com>",
   "homepage": "http://curtis.schlak.com/nodemock/",
   "contributors": [
-    "Curtis Schlak <realistschuckle@gmail.com>",
     "Oscar Renalias <oscar@renalias.net>",
     "Aaron Fay <aaron.j.fay@gmail.com>",
     "Dominic Tarr <dominic.tarr@gmail.com>",
@@ -26,10 +25,10 @@
     }
   ],
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-contrib-jshint": "~0.3.0",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "nodeunit": "~0.7.4"
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "nodeunit": "^0.9.1"
   },
   "repository": {
     "type": "git",
@@ -52,5 +51,5 @@
     "nodemock",
     "mockingbird"
   ],
-  "license": "MIT-License"
+  "license": "MIT"
 }

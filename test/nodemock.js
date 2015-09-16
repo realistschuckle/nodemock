@@ -42,17 +42,28 @@ exports['mocks can have names which get reported in error messages'] = function(
 exports['mocked functions pattern match on'] = {
 	setUp: function(cb) {
 		this.mock = nm.mock('foo')
-								  .takes(10, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+								  .takes(10, NaN, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
 		cb();
 	}
 
 , numbers: function(test) {
 		var mock = this.mock;
 		test.doesNotThrow(function() {
-			mock.foo(10, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+			mock.foo(10, NaN, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
 		});
 		test.throws(function() {
-			mock.foo(-1, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+			mock.foo(-1, NaN, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+		});
+		test.done();
+	}
+
+, 'silly numbers': function(test) {
+		var mock = this.mock;
+		test.doesNotThrow(function() {
+			mock.foo(10, NaN, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+		});
+		test.throws(function() {
+			mock.foo(10, 3, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
 		});
 		test.done();
 	}
@@ -60,10 +71,10 @@ exports['mocked functions pattern match on'] = {
 , strings: function(test) {
 		var mock = this.mock;
 		test.doesNotThrow(function() {
-			mock.foo(10, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+			mock.foo(10, NaN, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
 		});
 		test.throws(function() {
-			mock.foo(10, "WORLD", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+			mock.foo(10, NaN, "WORLD", true, [1, 4, 5], {"a": "aa", "b": "bb"});
 		});
 		test.done();
 	}
@@ -71,10 +82,10 @@ exports['mocked functions pattern match on'] = {
 , booleans: function(test) {
 		var mock = this.mock;
 		test.doesNotThrow(function() {
-			mock.foo(10, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+			mock.foo(10, NaN, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
 		});
 		test.throws(function() {
-			mock.foo(10, "Hello", false, [1, 4, 5], {"a": "aa", "b": "bb"});
+			mock.foo(10, NaN, "Hello", false, [1, 4, 5], {"a": "aa", "b": "bb"});
 		});
 		test.done();
 	}
@@ -82,10 +93,10 @@ exports['mocked functions pattern match on'] = {
 , arrays: function(test) {
 		var mock = this.mock;
 		test.doesNotThrow(function() {
-			mock.foo(10, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+			mock.foo(10, NaN, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
 		});
 		test.throws(function() {
-			mock.foo(10, "Hello", true, [1, 5, 4], {"a": "aa", "b": "bb"});
+			mock.foo(10, NaN, "Hello", true, [1, 5, 4], {"a": "aa", "b": "bb"});
 		});
 		test.done();
 	}
@@ -93,10 +104,10 @@ exports['mocked functions pattern match on'] = {
 , objects: function(test) {
 		var mock = this.mock;
 		test.doesNotThrow(function() {
-			mock.foo(10, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
+			mock.foo(10, NaN, "Hello", true, [1, 4, 5], {"a": "aa", "b": "bb"});
 		});
 		test.throws(function() {
-			mock.foo(10, "Hello", true, [1, 4, 5], {"c": "aa", "b": "aa"});
+			mock.foo(10, NaN, "Hello", true, [1, 4, 5], {"c": "aa", "b": "aa"});
 		});
 		test.done();
 	}
