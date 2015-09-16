@@ -1,15 +1,14 @@
 {
   "name": "nodemock",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "directories": {
     "test": "test"
   },
   "main": "./lib/nodemock",
   "description": "Simple Yet Powerful Mocking Framework for NodeJs",
-  "author": "Arunoda Susiripala <arunoda.susiripala@gmail.com>",
+  "author": "Curtis Schlak <realistschuckle@gmail.com>",
   "homepage": "http://curtis.schlak.com/nodemock/",
   "contributors": [
-    "Curtis Schlak <realistschuckle@gmail.com>",
     "Oscar Renalias <oscar@renalias.net>",
     "Aaron Fay <aaron.j.fay@gmail.com>",
     "Dominic Tarr <dominic.tarr@gmail.com>",
